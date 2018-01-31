@@ -25,6 +25,7 @@ class App extends Component {
     const newColorForMyWords = {...this.state.myWords};
     newColorForMyWords[1].color = rgbHex(r, g, b);
     
+    
     this.setState({myWords: newColorForMyWords});
   }
 
