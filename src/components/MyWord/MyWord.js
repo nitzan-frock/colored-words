@@ -1,13 +1,15 @@
 import React from 'react';
 
 const myWord = (props) => {
-    const style = {
+    let style = {
         color: props.color,
     }
+
     return (
         <p 
-        style={style} 
-        onClick={props.click}>{props.word}</p>
+            style={style} 
+            onClick={props.clicked}>
+        {props.word}</p>
     );
 }
 
