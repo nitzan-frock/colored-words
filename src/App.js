@@ -1,39 +1,35 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import MyWord from './components/MyWord/MyWord';
+import MyWords from './components/MyWords/MyWords';
 import rgbHex from 'rgb-hex';
 
 class App extends Component {
   state = {
     myWords: [
         {word:'word', color: '37e59f'},
-        {word:'bird', color: '#37e59f'},
+        {word:'bird', color: 'black'},
         {word:'ostrich', color: 'black'},
         {word:'Dee', color: 'black'},
       ],
-      wordClicked: false,
   }
 
-  wordClickedHandler = () => {
+  wordClickedHandler = (index) => {
     console.log("was clicked.");
 
     // generate random color values for rgb
     const r = Math.floor(Math.random()*255);
     const g = Math.floor(Math.random()*255);
     const b = Math.floor(Math.random()*255);
-    console.log('RGB: ' + r + ', ' + g + ', ' + b);
+    const RGB = 'RGB( ' + r + ', ' + g + ', ' + b + ')';
 
-    //create copy of myWords for immutable change
-    const newColorForMyWords = {...this.state.myWords};
-    newColorForMyWords[1].color = ('#' + rgbHex(r, g, b));
-    console.log(newColorForMyWords[1].color);
-
-    //this.setState({myWords: newColorForMyWords});
-
+    const newColor = rgbHex(r, g, b);
+    
     this.setState((prevState, props) => {
+      const oldMyWords = prevState.myWords;
+      oldMyWords[index].color = RGB;
       return {
-        myWords: newColorForMyWords
+        myWords: oldMyWords
       }
     });
   }
@@ -41,9 +37,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <MyWord
-          word={this.state.myWords[1].word}
-          color={this.state.myWords[1].color} 
+        <MyWords
+          words={this.state.myWords} 
           clicked={this.wordClickedHandler} />
       </div>
     );
