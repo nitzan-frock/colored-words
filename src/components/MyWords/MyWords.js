@@ -9,12 +9,6 @@ const MyWords = (props) => {
             color={word.color}
             clicked={() => props.clicked(index)} />
     });
-    // return (
-    //     <MyWord
-    //     word={this.state.myWords[1].word}
-    //     color={this.state.myWords[1].color} 
-    //     clicked={this.wordClickedHandler} />
-    // );
 }
 
 export default MyWords;
